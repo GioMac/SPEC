@@ -1,0 +1,7 @@
+[Unit]
+Description=UniFi controller service
+
+[Service]
+ExecStart=/usr/bin/java -jar /opt/unifi/lib/ace.jar start
+ExecStop=/usr/bin/java -jar /opt/unifi/lib/ace.jar stop
+
