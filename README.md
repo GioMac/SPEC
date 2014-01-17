@@ -1,6 +1,7 @@
-SPEC
+RPM SPEC files
 ====
 
-RPM SPECs
-
-
+__Provided files__
+* unifi - for Ubiquiti UniFi controller<br>
+- unifi.spec - spec file
+- sources/unifi.service - systemd unit file
