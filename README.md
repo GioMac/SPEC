@@ -12,3 +12,6 @@ __keepassx__
 
 __Sublime Text__
 - sublime_text.spec
+
+__Apache Tomcat - 7.0 support for RHEL6__
+- apache-tomcat.spec
