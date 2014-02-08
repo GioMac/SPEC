@@ -45,13 +45,14 @@ cd %{appbuildroot}
 rm -f LICENSE NOTICE RELEASE-NOTES RUNNING.txt
 cd bin
 rm -f *.bat
+chmod o-rwx -R %{appbuildroot}
 
 %clean
 rm -rf %{buildroot}
 
 %files
 %doc LICENSE NOTICE RELEASE-NOTES RUNNING.txt
-%defattr(0640,tomcat,tomcat,0750)
+%defattr(-,tomcat,tomcat,-)
 %attr(0750,tomcat,tomcat) %dir %{appdir}/bin
 %config(noreplace) %{appdir}/bin/*.sh
 %config(noreplace) %{appdir}/bin/*.xml
