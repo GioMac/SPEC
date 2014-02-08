@@ -13,5 +13,6 @@ __keepassx__
 __Sublime Text__
 - sublime_text.spec
 
-__Apache Tomcat - 7.0 support for RHEL6__
-- apache-tomcat.spec
+__Apache Tomcat__
+- apache-tomcat.spec - spec for 7.0 support for RHEL6
+- sources/apache-tomcat-setenv.sh - setenv.sh for Sun JDK
