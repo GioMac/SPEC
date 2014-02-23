@@ -3,7 +3,7 @@
 Name:     unifi
 Summary:  Ubiquitu UniFi Controller
 Version:  3.1.6b
-Release:  0
+Release:  0%{dist}
 Group:    Applications/System
 License:  Proprietary
 URL:      http://www.ubnt.com/
