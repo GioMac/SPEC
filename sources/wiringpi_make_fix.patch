@@ -1,0 +1,12 @@
+diff -urN wiringPi/wiringPi.c wiringPi.new/wiringPi.c
+--- wiringPi.old/wiringPi.c     2014-03-19 17:00:34.952588663 +0400
++++ wiringPi/wiringPi.c 2014-03-19 17:05:36.463428073 +0400
+@@ -1369,7 +1369,7 @@
+ 
+     if (pid == 0)      // Child, exec
+     {
+-      execl ("/usr/local/bin/gpio", "gpio", "edge", pinS, modeS, (char *)NULL) ;
++      execl ("/usr/bin/gpio", "gpio", "edge", pinS, modeS, (char *)NULL) ;
+       return wiringPiFailure (WPI_FATAL, "wiringPiISR: execl failed: %s\n", strerror (errno)) ;
+     }
+     else               // Parent, wait
