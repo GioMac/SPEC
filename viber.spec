@@ -8,7 +8,6 @@ URL:           https://github.com/Emdek/otter
 Source0:        %{name}.deb
 BuildRoot:     %{_tmppath}/%{name}-%{version}-build
 Packager:      George Machitidze <giomac@gmail.com>
-Requires:      qt5-qtbase >= 5.2.0 qt5-qtbase-gui >= 5.2.0 qt5-qtdeclarative >= 5.2.0 qt5-qtscript >= 5.2.0 qt5-qtwebkit >= 5.2.0
 BuildRequires: binutils tar
 ExclusiveArch: x86_64
 AutoReqProv:   no
