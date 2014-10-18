@@ -5,3 +5,5 @@ Description=UniFi controller service
 ExecStart=/usr/bin/java -jar /opt/unifi/lib/ace.jar start
 ExecStop=/usr/bin/java -jar /opt/unifi/lib/ace.jar stop
 
+[Install]
+WantedBy=multi-user.target
