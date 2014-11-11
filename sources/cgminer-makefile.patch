@@ -1,0 +1,20 @@
+--- cgminer-4.4.2/Makefile.am	2014-07-17 18:56:17.198976084 +0200
++++ Makefile.am	2014-07-17 19:01:12.903461629 +0200
+@@ -1,7 +1,7 @@
+ 
+ ACLOCAL_AMFLAGS = -I m4
+ 
+-JANSSON_CPPFLAGS= -I$(top_builddir)/compat/jansson-2.6/src -I$(top_srcdir)/compat/jansson-2.6/src
++JANSSON_CPPFLAGS=
+ 
+ if WANT_USBUTILS
+ USBUTILS_CPPFLAGS = -I$(top_builddir)/compat/libusb-1.0/libusb -I$(top_srcdir)/compat/libusb-1.0/libusb
+@@ -16,7 +16,7 @@
+ 		  bitforce-firmware-flash.c hexdump.c ASIC-README \
+ 		  01-cgminer.rules
+ 
+-SUBDIRS		= lib compat ccan
++SUBDIRS		= lib ccan
+ 
+ cgminer_CPPFLAGS = $(PTHREAD_FLAGS) -fno-strict-aliasing $(JANSSON_CPPFLAGS) $(USBUTILS_CPPFLAGS)
+ 

@@ -1,0 +1,40 @@
+#!/bin/sh
+
+# settings
+__SETTINGS__
+
+# configuration file
+if ! [ -r $cgminer_conf ]
+then
+	echo "configuration file $cgminer_conf is missing" >&2
+	exit 1
+fi
+
+# log folder
+cgminer_logdir=$(dirname $cgminer_log)
+if ! [ -d $cgminer_logdir ]
+then
+	mkdir -p $cgminer_logdir
+	if [ $? != 0 ]
+	then
+		echo "creation of log folder failed" >&2
+		exit 1
+	fi
+fi
+
+# start/stop
+case $1 in
+	start)	{	$cgminer_bin -c $cgminer_conf -T >> $cgminer_log &
+			sleep 1
+			ps -C cgminer -o pid --no-headers | tr -d " " > $cgminer_run
+		};;
+	stop)	{	if ! [ -r $cgminer_run ]
+			then
+				echo "cgminer is not running" >&2
+				exit 1
+			fi
+			pid=$(cat $cgminer_run)
+			kill -TERM $pid
+			rm -f $cgminer_run
+		};;
+esac

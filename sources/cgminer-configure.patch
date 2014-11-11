@@ -1,0 +1,11 @@
+--- cgminer-4.4.2/configure.ac	2014-07-17 18:56:17.562976094 +0200
++++ configure.ac	2014-07-17 19:01:50.204462628 +0200
+@@ -419,7 +419,7 @@
+ AM_CONDITIONAL([WANT_STATIC_LIBUSB], [test x$dlibusb = xno])
+ 
+ AC_CONFIG_SUBDIRS([compat/jansson-2.6])
+-JANSSON_LIBS="compat/jansson-2.6/src/.libs/libjansson.a"
++JANSSON_LIBS="-ljansson"
+ 
+ PKG_PROG_PKG_CONFIG()
+ 

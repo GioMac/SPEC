@@ -1,0 +1,11 @@
+[Unit]
+Description=The CGMiner Service
+Requires=network.target nss-lookup.target
+After=network.target nss-lookup.target
+
+[Service]
+Type=simple
+__SETTINGS__
+
+[Install]
+WantedBy=multi-user.target
