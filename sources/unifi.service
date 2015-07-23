@@ -2,8 +2,10 @@
 Description=UniFi controller service
 
 [Service]
-ExecStart=/usr/bin/java -jar /opt/unifi/lib/ace.jar start
+Type=simple
+ExecStart=/usr/bin/java -Xmx1024M -jar /opt/unifi/lib/ace.jar start
 ExecStop=/usr/bin/java -jar /opt/unifi/lib/ace.jar stop
+SuccessExitStatus=143
 
 [Install]
 WantedBy=multi-user.target
