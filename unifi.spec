@@ -2,7 +2,7 @@
 
 Name:     unifi
 Summary:  Ubiquitu UniFi Controller
-Version:  4.6.3
+Version:  4.6.6
 Release:  0%{dist}
 Group:    Applications/System
 License:  Proprietary
@@ -51,5 +51,3 @@ rm -rf /opt/%{name}/work
 - Workaround for webapps ROOT issue https://github.com/GioMac/SPEC/issues/1
 * Fri Jan 17 2014 George Machitidze <giomac@gmail.com>
 - Initial build
-
-
