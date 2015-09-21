@@ -57,8 +57,6 @@ rm -rf %{buildroot}
 %doc examples pins/pins.pdf
 
 %changelog
-
-%install
 * Wed Mar 18 2014 George Machitidze <giomac@gmail.com> - 2.3-0
 - Build for 2.3
 
