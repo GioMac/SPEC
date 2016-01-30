@@ -1,0 +1,6 @@
+/usr/sbin/dogecoind		--	gen_context(system_u:object_r:dogecoin_exec_t,s0)
+/usr/lib/systemd/system/dogecoin.service		--	gen_context(system_u:object_r:dogecoin_unit_file_t,s0)
+
+/etc/dogecoin(/.*)?		gen_context(system_u:object_r:dogecoin_conf_t,s0)
+/var/lib/dogecoin(/.*)?		gen_context(system_u:object_r:dogecoin_var_lib_t,s0)
+

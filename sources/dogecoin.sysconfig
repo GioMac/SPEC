@@ -1,0 +1,10 @@
+# Provide options to the dogecoin daemon here, for example
+# OPTIONS="-testnet -disable-wallet"
+
+OPTIONS=""
+
+# System service defaults.
+# Don't change these unless you know what you're doing.
+CONFIG_FILE="/etc/dogecoin/dogecoin.conf"
+DATA_DIR="/var/lib/dogecoin"
+PID_FILE="/run/dogecoind/dogecoind.pid"

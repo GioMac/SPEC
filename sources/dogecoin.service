@@ -1,0 +1,12 @@
+[Unit]
+Description=Console-based Dogecoin daemon for headless servers
+After=syslog.target network.target
+
+[Service]
+Type=forking
+EnvironmentFile=/etc/sysconfig/dogecoin
+ExecStart=/usr/sbin/dogecoind -daemon -conf=${CONFIG_FILE} -datadir=${DATA_DIR} -pid=${PID_FILE} $OPTIONS
+User=dogecoin
+Group=dogecoin
+
+[Install]

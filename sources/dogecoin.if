@@ -1,0 +1,164 @@
+## <summary>policy for dogecoin</summary>
+
+
+########################################
+## <summary>
+##	Transition to dogecoin.
+## </summary>
+## <param name="domain">
+## <summary>
+##	Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`dogecoin_domtrans',`
+    gen_require(`
+	type dogecoin_t, dogecoin_exec_t;
+    ')
+
+    corecmd_search_bin($1)
+    domtrans_pattern($1, dogecoin_exec_t, dogecoin_t)
+')
+
+
+########################################
+## <summary>
+##	Execute dogecoin server in the dogecoin domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed to transition.
+##	</summary>
+## </param>
+#
+interface(`dogecoin_systemctl',`
+    gen_require(`
+	type dogecoin_t;
+	type dogecoin_unit_file_t;
+    ')
+
+    systemd_exec_systemctl($1)
+        systemd_read_fifo_file_password_run($1)
+    allow $1 dogecoin_unit_file_t:file read_file_perms;
+    allow $1 dogecoin_unit_file_t:service manage_service_perms;
+
+    ps_process_pattern($1, dogecoin_t)
+')
+
+########################################
+## <summary>
+##	Search dogecoin lib directories.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`dogecoin_search_lib',`
+    gen_require(`
+	type dogecoin_var_lib_t;
+    ')
+
+    allow $1 dogecoin_var_lib_t:dir search_dir_perms;
+    files_search_var_lib($1)
+')
+
+########################################
+## <summary>
+##	Read dogecoin lib files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`dogecoin_read_lib_files',`
+    gen_require(`
+	type dogecoin_var_lib_t;
+    ')
+
+    files_search_var_lib($1)
+    read_files_pattern($1, dogecoin_var_lib_t, dogecoin_var_lib_t)
+')
+
+########################################
+## <summary>
+##	Manage dogecoin lib files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`dogecoin_manage_lib_files',`
+    gen_require(`
+	type dogecoin_var_lib_t;
+    ')
+
+    files_search_var_lib($1)
+    manage_files_pattern($1, dogecoin_var_lib_t, dogecoin_var_lib_t)
+')
+
+########################################
+## <summary>
+##	Manage dogecoin lib directories.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`dogecoin_manage_lib_dirs',`
+    gen_require(`
+	type dogecoin_var_lib_t;
+    ')
+
+    files_search_var_lib($1)
+    manage_dirs_pattern($1, dogecoin_var_lib_t, dogecoin_var_lib_t)
+')
+
+
+########################################
+## <summary>
+##	All of the rules required to administrate
+##	an dogecoin environment
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <param name="role">
+##	<summary>
+##	Role allowed access.
+##	</summary>
+## </param>
+## <rolecap/>
+#
+interface(`dogecoin_admin',`
+    gen_require(`
+	type dogecoin_t;
+	type dogecoin_unit_file_t;
+	type dogecoin_var_lib_t;
+    ')
+
+    allow $1 dogecoin_t:process { ptrace signal_perms };
+    ps_process_pattern($1, dogecoin_t)
+
+    dogecoin_systemctl($1)
+    admin_pattern($1, dogecoin_unit_file_t)
+    allow $1 dogecoin_unit_file_t:service all_service_perms;
+    optional_policy(`
+	systemd_passwd_agent_exec($1)
+	systemd_read_fifo_file_passwd_run($1)
+    ')
+
+    files_search_var_lib($1)
+    admin_pattern($1, dogecoin_var_lib_t)
+
+')
+
