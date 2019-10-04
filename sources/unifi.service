@@ -3,7 +3,8 @@ Description=UniFi controller service
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/java -Xmx1024M -jar /opt/unifi/lib/ace.jar start
+#ExecStart=/usr/bin/java -Xmx1024M -jar /opt/unifi/lib/ace.jar start
+ExecStart=/usr/bin/scl enable rh-mongodb34 -- /usr/bin/java -Xmx1024M -jar /opt/unifi/lib/ace.jar start
 ExecStop=/usr/bin/java -jar /opt/unifi/lib/ace.jar stop
 SuccessExitStatus=143
 
